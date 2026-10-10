@@ -4,35 +4,35 @@ layout: default
 <section id="top" class="wrap hero" aria-labelledby="hero-title">
   <div>
     <p class="eyebrow">Personal blog · {{ 'now' | date: '%Y' }}</p>
-    <h1 id="hero-title">你好，我是<br>{{ site.title | split: '·' | first }}。</h1>
-    <p class="hero-copy">我在这里记录正在学习的东西、做过的小项目，以及一些不想忘记的想法。</p>
+    <h1 id="hero-title">你好，我是<br>{{ site.author.name | escape }}。</h1>
+    <p class="hero-copy">{{ site.author.bio | escape }}</p>
     <div class="hero-actions">
       <a class="button primary" href="#writing">读读我的文章</a>
-      <a class="button secondary" href="mailto:hello@example.com">给我发邮件</a>
+      <a class="button secondary" href="{{ site.author.github_url | escape }}">在 GitHub 找到我</a>
     </div>
   </div>
-  <div class="hero-card" aria-label="个人头像占位图"><div class="avatar">YN</div></div>
+  <div class="hero-card" role="img" aria-label="{{ site.author.name | escape }} 的字母头像"><div class="avatar" aria-hidden="true">{{ site.author.initials | escape }}</div></div>
 </section>
 
 <section id="writing" class="wrap section" aria-labelledby="writing-title">
-  <div class="section-heading"><div><p class="eyebrow">Latest notes</p><h2 id="writing-title">最近写了什么</h2><div class="rule"></div></div><p>以后只需要在 `_posts` 文件夹中新增 Markdown 文件。</p></div>
+  <div class="section-heading"><div><p class="eyebrow">Latest notes</p><h2 id="writing-title">最近写了什么</h2><div class="rule"></div></div><p>学习的过程，项目的进展，还有值得留下的小想法。</p></div>
   <div class="article-grid">
     {% for post in site.posts limit: 6 %}
     <article class="card">
-      <div class="card-meta">{{ post.date | date: '%Y.%m.%d' }}{% if post.tags %} · {{ post.tags | first }}{% endif %}</div>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
-      <a class="card-link" href="{{ post.url | relative_url }}">阅读文章 →</a>
+      <div class="card-meta">{{ post.date | date: '%Y.%m.%d' }}{% if post.tags %} · {{ post.tags | first | escape }}{% endif %}</div>
+      <h3>{{ post.title | escape }}</h3>
+      <p>{{ post.excerpt | strip_html | truncate: 100 | escape }}</p>
+      <a class="card-link" href="{{ post.url | relative_url }}" aria-label="阅读：{{ post.title | escape }}">阅读文章 →</a>
     </article>
     {% endfor %}
   </div>
 </section>
 
 <section id="projects" class="wrap section" aria-labelledby="projects-title">
-  <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2 id="projects-title">做过的小项目</h2><div class="rule"></div></div><p>项目内容仍然直接写在这个页面里，适合首节先改文字和链接。</p></div>
+  <div class="section-heading"><div><p class="eyebrow">Projects & resources</p><h2 id="projects-title">项目与资源</h2><div class="rule"></div></div><p>从这个博客开始，逐步收集自己的作品与学习记录。</p></div>
   <div class="project-grid">
-    <article class="card"><div class="card-meta">PROJECT 01</div><h3>校园活动页面</h3><p>为一次活动制作的静态介绍页，练习了布局和信息层级。</p><a class="card-link" href="#">查看项目 →</a></article>
-    <article class="card"><div class="card-meta">PROJECT 02</div><h3>我的学习清单</h3><p>一个帮助自己整理课程、目标和阅读记录的小工具。</p><a class="card-link" href="#">查看项目 →</a></article>
-    <article class="card"><div class="card-meta">PROJECT 03</div><h3>正在进行中</h3><p>这里可以放一个还没完成、但值得继续记录的想法。</p><a class="card-link" href="#">了解更多 →</a></article>
+    <article class="card"><div class="card-meta">PERSONAL PROJECT</div><h3>我的个人博客</h3><p>基于 Jekyll 的静态博客，用 Markdown 写文章，让内容与代码一起积累。</p><a class="card-link" href="{{ site.author.repository_url | escape }}">查看博客源码 →</a></article>
+    <article class="card"><div class="card-meta">WRITING NOTES</div><h3>学习与写作笔记</h3><p>记录具体的问题、尝试的方法和下一步想法。文章会随着新的学习不断更新。</p><a class="card-link" href="#writing">浏览笔记 →</a></article>
+    <article class="card"><div class="card-meta">TEMPLATE CREDIT</div><h3>nice-template</h3><p>这个博客使用的原始模板。保留它简洁的结构，再慢慢加入自己的内容。</p><a class="card-link" href="https://github.com/yejianqin61-cell/nice-template">查看模板来源 →</a></article>
   </div>
 </section>

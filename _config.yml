@@ -1,7 +1,15 @@
-title: 你的名字 · 个人博客
-description: 一个可以持续写作的个人博客
+title: TristanWu63 · 个人博客
+description: TristanWu63 的学习、项目与写作笔记。用简单的页面，留下值得回看的思考。
+url: "https://tristanwu63.github.io"
+baseurl: ""
+author:
+  name: TristanWu63
+  initials: TW
+  bio: 我在这里记录学习过程、整理项目笔记，也写下日常的观察与思考。慢慢积累，持续更新。
+  github_url: "https://github.com/TristanWu63"
+  repository_url: "https://github.com/TristanWu63/TristanWu63.github.io"
 lang: zh-CN
-timezone: Asia/Singapore
+timezone: Asia/Shanghai
 markdown: kramdown
 permalink: /posts/:title/
 exclude:

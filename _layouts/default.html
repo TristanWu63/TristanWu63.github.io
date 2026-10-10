@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace }}">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | escape }}">
+  <meta name="author" content="{{ site.author.name | escape }}">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
   <header class="site-header">
     <div class="wrap nav">
-      <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark">✦</span> {{ site.title | split: '·' | first }}</a>
+      <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">✦</span> {{ site.author.name | escape }}</a>
       <nav aria-label="主导航">
         <ul class="nav-links">
           <li><a href="{{ '/' | relative_url }}#writing">文章</a></li>
@@ -22,6 +24,6 @@
     </div>
   </header>
   <main id="main">{{ content }}</main>
-  <footer class="site-footer"><div class="wrap footer-row"><span>© {{ 'now' | date: '%Y' }} {{ site.title | split: '·' | first }}</span><span><a href="https://github.com/">GitHub</a> · <a href="mailto:hello@example.com">Email</a></span></div></footer>
+  <footer class="site-footer"><div class="wrap footer-row"><span>© {{ 'now' | date: '%Y' }} {{ site.author.name | escape }}</span><span><a href="{{ site.author.github_url | escape }}">GitHub</a> · <a href="{{ site.author.repository_url | escape }}">博客源码</a> · <a href="https://github.com/yejianqin61-cell/nice-template">模板来源</a></span></div></footer>
 </body>
 </html>
